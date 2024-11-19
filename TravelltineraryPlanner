@@ -1,0 +1,127 @@
+package besantproject;
+
+
+		import java.util.*;
+
+		public class TravelItineraryPlanner {
+
+		    // List to store destinations in the itinerary
+		    private static List<Destination> itinerary = new ArrayList<>();
+		    private static double totalBudget = 0;
+
+		    public static void main(String[] args) {
+		        Scanner scanner = new Scanner(System.in);
+		        boolean exit = false;
+
+		        // Main loop to navigate the program
+		        while (!exit) {
+		            System.out.println("\n--- Travel Itinerary Planner ---");
+		            System.out.println("1. Add Destination");
+		            System.out.println("2. View Itinerary");
+		            System.out.println("3. View Budget");
+		            System.out.println("4. Exit");
+		            System.out.print("Please select an option: ");
+		            int choice = scanner.nextInt();
+		            scanner.nextLine(); // consume the newline character
+
+		            switch (choice) {
+		                case 1:
+		                    // Add a destination to the itinerary
+		                    addDestination(scanner);
+		                    break;
+		                case 2:
+		                    // View the complete itinerary
+		                    viewItinerary();
+		                    break;
+		                case 3:
+		                    // View the total budget
+		                    viewBudget();
+		                    break;
+		                case 4:
+		                    // Exit the program
+		                    System.out.println("Thank you for using the Travel Itinerary Planner!");
+		                    exit = true;
+		                    break;
+		                default:
+		                    System.out.println("Invalid choice. Please try again.");
+		            }
+		        }
+		        scanner.close();
+		    }
+
+		    // Method to add a destination to the itinerary
+		    public static void addDestination(Scanner scanner) {
+		        System.out.print("Enter destination name: ");
+		        String destinationName = scanner.nextLine();
+
+		        System.out.print("Enter travel date (e.g., 2024-12-25): ");
+		        String date = scanner.nextLine();
+
+		        System.out.print("Enter your budget for this destination: $");
+		        double budget = scanner.nextDouble();
+		        scanner.nextLine(); // consume the newline character
+
+		        System.out.print("Enter your activity preferences (e.g., sightseeing, beach, etc.): ");
+		        String activities = scanner.nextLine();
+
+		        System.out.print("Enter your preferred weather (e.g., sunny, rainy, etc.): ");
+		        String weather = scanner.nextLine();
+
+		        // Add the new destination to the itinerary
+		        Destination newDestination = new Destination(destinationName, date, budget, activities, weather);
+		        itinerary.add(newDestination);
+
+		        // Add to the total budget
+		        totalBudget += budget;
+
+		        System.out.println("Destination added successfully!");
+		    }
+
+		    // Method to display the travel itinerary
+		    public static void viewItinerary() {
+		        if (itinerary.isEmpty()) {
+		            System.out.println("Your itinerary is empty. Add some destinations first.");
+		        } else {
+		            System.out.println("\n--- Travel Itinerary ---");
+		            for (Destination dest : itinerary) {
+		                System.out.println(dest);
+		            }
+		        }
+		    }
+
+		    // Method to display the total budget
+		    public static void viewBudget() {
+		        System.out.println("\nTotal Budget for Your Trip: $" + totalBudget);
+		    }
+
+		    // Nested class to represent a destination
+		    public static class Destination {
+		        private String name;
+		        private String date;
+		        private double budget;
+		        private String activities;
+		        private String weather;
+
+		        // Constructor
+		        public Destination(String name, String date, double budget, String activities, String weather) {
+		            this.name = name;
+		            this.date = date;
+		            this.budget = budget;
+		            this.activities = activities;
+		            this.weather = weather;
+		        }
+
+		        @Override
+		        public String toString() {
+		            return "Destination: " + name + "\n" +
+		                   "Travel Date: " + date + "\n" +
+		                   "Budget: $" + budget + "\n" +
+		                   "Activities: " + activities + "\n" +
+		                   "Preferred Weather: " + weather + "\n";
+		        }
+		    }
+		
+
+	}
+
+
