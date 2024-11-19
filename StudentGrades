@@ -1,0 +1,62 @@
+package besantproject;
+
+
+	import java.util.ArrayList;
+	import java.util.Scanner;
+
+	public class StudentGrades {
+
+	    public static void main(String[] args) {
+	        // Create an ArrayList to store the students' grades
+	        ArrayList<Integer> grades = new ArrayList<>();
+	        Scanner scanner = new Scanner(System.in);
+
+	        // Prompt the teacher to enter grades
+	        System.out.println("Enter student grades (enter -1 to stop):");
+
+	        while (true) {
+	            System.out.print("Enter grade: ");
+	            int grade = scanner.nextInt();
+
+	            if (grade == -1) {
+	                break; // Stop input when -1 is entered
+	            }
+
+	            // Add the grade to the ArrayList
+	            grades.add(grade);
+	        }
+
+	        // Compute the average, highest, and lowest grades
+	        if (grades.isEmpty()) {
+	            System.out.println("No grades were entered.");
+	        } else {
+	            int sum = 0;
+	            int highest = grades.get(0);
+	            int lowest = grades.get(0);
+
+	            for (int grade : grades) {
+	                sum += grade;
+	                if (grade > highest) {
+	                    highest = grade;
+	                }
+	                if (grade < lowest) {
+	                    lowest = grade;
+	                }
+	            }
+
+	            // Calculate average
+	            double average = (double) sum / grades.size();
+
+	            // Display the results
+	            System.out.println("\nResults:");
+	            System.out.println("Average grade: " + average);
+	            System.out.println("Highest grade: " + highest);
+	            System.out.println("Lowest grade: " + lowest);
+	        }
+
+	        // Close the scanner
+	        scanner.close();
+	    }
+	}
+
+
