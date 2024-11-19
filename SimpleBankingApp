@@ -1,0 +1,91 @@
+package besantproject;
+
+
+		import java.util.Scanner;
+
+		public class SimpleBankingApp {
+
+		    // Declare a variable to store the user's balance
+		    private static double balance = 0.0;
+
+		    public static void main(String[] args) {
+		        // Create a scanner object to read input from the user
+		        Scanner scanner = new Scanner(System.in);
+
+		        // Display the welcome message
+		        System.out.println("Welcome to Simple Banking Application!");
+
+		        // Run the banking operations in a loop until the user chooses to exit
+		        while (true) {
+		            // Display the menu
+		            System.out.println("\nPlease select an option:");
+		            System.out.println("1. Deposit");
+		            System.out.println("2. Withdraw");
+		            System.out.println("3. Check Balance");
+		            System.out.println("4. Exit");
+
+		            // Read the user's choice
+		            int choice = scanner.nextInt();
+
+		            // Perform the action based on the user's choice
+		            switch (choice) {
+		                case 1:
+		                    // Deposit money
+		                    deposit(scanner);
+		                    break;
+		                case 2:
+		                    // Withdraw money
+		                    withdraw(scanner);
+		                    break;
+		                case 3:
+		                    // Check balance
+		                    checkBalance();
+		                    break;
+		                case 4:
+		                    // Exit the program
+		                    System.out.println("Thank you for using Simple Banking Application!");
+		                    scanner.close();
+		                    System.exit(0); // Exit the program
+		                    break;
+		                default:
+		                    System.out.println("Invalid choice. Please select a valid option.");
+		            }
+		        }
+		    }
+
+		    // Method to deposit money into the account
+		    public static void deposit(Scanner scanner) {
+		        System.out.print("Enter the amount to deposit: ");
+		        double amount = scanner.nextDouble();
+
+		        if (amount > 0) {
+		            balance += amount; // Add the deposit to the balance
+		            System.out.println("Successfully deposited $" + amount);
+		        } else {
+		            System.out.println("Invalid deposit amount. Please enter a positive number.");
+		        }
+		    }
+
+		    // Method to withdraw money from the account
+		    public static void withdraw(Scanner scanner) {
+		        System.out.print("Enter the amount to withdraw: ");
+		        double amount = scanner.nextDouble();
+
+		        if (amount > 0 && amount <= balance) {
+		            balance -= amount; // Subtract the withdrawal from the balance
+		            System.out.println("Successfully withdrew $" + amount);
+		        } else if (amount > balance) {
+		            System.out.println("Insufficient funds. Your balance is only $" + balance);
+		        } else {
+		            System.out.println("Invalid withdrawal amount. Please enter a positive number.");
+		        }
+		    }
+
+		    // Method to check the current balance
+		    public static void checkBalance() {
+		        System.out.println("Your current balance is: $" + balance);
+		    }
+		
+	}
+
+
